@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;800&family=Poppins:wght@300;800&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1b1c1e;
+      color: white;
+      display: flex;
+      height: 100vh;
+    }
+
+    .info-section {
+    font-family: 'Montserrat', 'Poppins', 'Arial Black', sans-serif;
+      width: 50%;
+      color: white;
+      background-color: #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 80px;
+      box-sizing: border-box;
+    }
+
+    .info-section h2 {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .info-section p {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+
+    .login-section {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 80px;
+      box-sizing: border-box;
+    }
+
+    .login-section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .login-section input {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: 1px solid #333;
+      border-radius: 4px;
+      background-color: #292a2d;
+      color: white;
+    }
+
+    .login-section button {
+      width: 510px;
+      padding: 14px;
+      border: none;
+      border-radius: 4px;
+      background-color: orange;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-section button:hover {
+      background-color: orange;
+    }
+
+    .login-section a {
+      color: orange;
+      text-decoration: none;
+      font-size: 14px;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .google-signin {
+      background-color: white;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      padding: 14px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .google-signin img {
+      width: 20px;
+      margin-right: 10px;
+    }
+
+    .google-signin:hover {
+      background-color: #f1f1f1;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .info-section, .login-section {
+        width: 100%;
+        padding: 40px;
+        text-align: center;
+      }
+    }
+
+    .whatsapp-float {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #ff9800;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        z-index: 1001;
+        transition: transform 0.3s ease;
+    }
+
+    .whatsapp-float:hover {
+        transform: scale(1.1);
+    }
+
+    .whatsapp-float img {
+        width: 30px;
+        height: 30px;
+    }
+
+    #whatsappPopupOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 1000;
+    }
+
+    #whatsappPopup {
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 350px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        z-index: 1002;
+        display: none;
+    }
+
+    #whatsappPopup::before {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        right: 30px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #fff;
+        z-index: 1002;
+    }
+
+    .whatsapp-popup-header {
+        background-color: #ff9800;
+        color: white;
+        padding: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        position: relative;
+    }
+
+    .whatsapp-popup-body {
+        padding: 20px;
+        text-align: left;
+    }
+
+    .whatsapp-popup-body img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .whatsapp-popup-body h3 {
+        margin: 10px 0;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .whatsapp-popup-body p {
+        margin: 5px 0;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .whatsapp-popup-body a {
+        display: inline-block;
+        margin-top: 10px;
+        color: orange;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .whatsapp-popup-body a:hover {
+        text-decoration: underline;
+    }
+
+    .whatsapp-popup-footer {
+        text-align: center;
+        padding: 10px;
+        font-size: 12px;
+        color: #ff9800;
+        border-top: 1px solid #ddd;
+    }
+
+    .whatsapp-popup-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="info-section">
+        <h2>Shop<br> effortlessly<br> across Africa with ease.<br> Your satisfaction<br> is our top<br> priority.</h2>
+        <p>Bringing global shopping to your doorstep.</p>
+    </div>
+    <div class="login-section">
+        <h2>Sign in to your account</h2>
+        <div class="google-signin">
+        <img src="Image/googlee.jpg" alt="Google Logo">
+        Sign in with Google
+        </div>
+        <p style="text-align: center; color: grey;">or</p>
+        <form>
+        <input type="email" placeholder="Email address" required>
+        <input type="password" placeholder="Password" required>
+        <a href="#" style="display: block; text-align: right !important; margin-top: 5px;">Forgot password?</a>
+        <button type="submit" style="margin-top: 5px;">Sign in</button>
+        <a href="register.html">Don’t have an account? Sign up</a>
+        </form>
+    </div>
+
+  <div class="popup-overlay" id="whatsappPopupOverlay" onclick="closeWhatsAppPopup()"></div>
+
+    <div class="whatsapp-float" onclick="toggleWhatsAppPopup()">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp Icon">
+    </div>
+
+    <div class="whatsapp-popup" id="whatsappPopup">
+        <div class="whatsapp-popup-header">
+            <h2 style="font-size: 24px; line-height: 1.4; font-family: Arial, sans-serif;">Welcome to V5 DIGITAL<br> EXPRESS STORE!</h2>
+            <p style="font-size: 14px; font-weight: normal; line-height: 1.4; font-family: Arial, sans-serif;">Need assistance? Connect with our Online Agent on WhatsApp by clicking below.</p>
+            <button class="whatsapp-popup-close" onclick="closeWhatsAppPopup()">×</button>
+        </div>
+        <div class="whatsapp-popup-body">
+            <img src="Image/me.jpg" alt="Agent">
+            <h3>Online Sales/Support Agent</h3>
+            <p>VExpress</p>
+            <a href="https://wa.me/yourphonenumber" target="_blank" style="text-decoration: none; color: orange; font-weight: bold;">
+                Chat on WhatsApp
+            </a>
+        </div>
+        <div class="whatsapp-popup-footer">
+            <strong style="color: black; font-size: 14px;">Powered by</strong>: <a href="#" style="color: #ff9800; text-decoration: none;">VExpress</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleWhatsAppPopup() {
+            document.getElementById('whatsappPopupOverlay').style.display = 'block';
+            document.getElementById('whatsappPopup').style.display = 'block';
+        }
+
+        function closeWhatsAppPopup() {
+            document.getElementById('whatsappPopupOverlay').style.display = 'none';
+            document.getElementById('whatsappPopup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
