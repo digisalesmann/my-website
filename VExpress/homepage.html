@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopWithV5Express</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="photo">
+            <a href="homepage.html">
+                <img src="Image/log.png" alt="Logo">
+            </a>
+        </div>
+
+        <div class="search-bar-container">
+            <input type="text" class="search-input" placeholder="Search for products">
+            <div class="dropdown-container" id="dropdown">
+                <span class="dropdown-toggle">
+                    Select Category
+                </span>
+                <ul class="dropdown-menu" style="width: 190px; margin-left: -1px; margin-top: 2px; border-radius: 1px;">
+                    <li><a href="#">Phones & Accessories</a></li>
+                    <li><a href="#">Tablets</a></li>
+                    <li><a href="#">Laptops</a></li>
+                    <li><a href="#">Computer Accessories</a></li>
+                    <li><a href="#">Desktops & Monitors</a></li>
+                    <li><a href="#">Printers & Scanners</a></li>
+                    <li><a href="#">Popular Brands</a></li>
+                </ul>
+            </div>
+            <button type="button" class="btn search-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <div class="nav">
+            <a href="register.html" style="text-decoration: none; color: #000;">SIGN UP / REGISTER</a>
+        </div>
+
+        <div class="icons">
+            <a href="#"><i class="fa-solid fa-qrcode"></i></a>
+            <a href="#"><i class="fa-regular fa-user"></i></a>
+            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </div>
+
+    <script>
+        const dropdownContainer = document.getElementById('dropdown');
+        const dropdownToggle = dropdownContainer.querySelector('.dropdown-toggle');
+
+        dropdownToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownContainer.classList.toggle('open');
+        });
+
+        document.addEventListener('click', () => {
+            dropdownContainer.classList.remove('open');
+        });
+    </script>
+
+    <div class="sidebar">
+        <h3>
+          <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          Browse Categories
+          <span class="arrow-icon" style="font-size: 8px;">▼</span>
+        </h3>
+        <ul class="dropdown-content" style="margin-left: 20px; width: 205px;">
+          <li><a href="#"> Phones & Accessories</a></li>
+          <li><a href="#">Tablets</a></li>
+          <li><a href="#">Laptops</a></li>
+          <li><a href="#">Computer Accessories</a></li>
+          <li><a href="#">Desktops & Monitors</a></li>
+          <li><a href="#">Printers & Scanners</a></li>
+          <li><a href="#">Popular Brands</a></li>
+        </ul>
+    </div>
+    
+    <script>
+        const dropdownHeader = document.querySelector(".sidebar h3");
+        const dropdownContent = document.querySelector(".dropdown-content");
+    
+        dropdownHeader.addEventListener("click", () => {
+          const isVisible = dropdownContent.style.display === "block";
+          dropdownContent.style.display = isVisible ? "none" : "block";
+        });
+    </script>
+    
+    <div class="navv">
+        <p><a href="homepage.html">HOME</a></p>
+        <p><a href="shop.html">SHOP</a></p>
+        <p><a href="blog.html">OUR BLOG</a></p>
+        <p><a href="service.html">SERVICES</a></p>
+        <p><a href="about.html">ABOUT US</a></p>
+        <p><a href="contact.html">CONTACT US</a></p>
+        <p><a href="location.html">LOCATIONS</a></p>
+        <p><a href="order.html">ORDER TRACKING</a></p>
+    </div>
+    <div class="containerr">
+        <div class="headerr">
+            <div class="slideshow">
+                <img src="Image/dsm.png" alt="Slide 1" class="active">
+                <img src="Image/shopp.png" alt="Slide 2">
+                <img src="Image/buy.png" alt="Slide 3">
+            </div>
+            <script>
+                const slides = document.querySelectorAll('.slideshow img');
+                let currentSlide = 0;
+            
+                function showNextSlide() {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }
+            
+                setInterval(showNextSlide, 10000);
+            </script>
+            
+        </div>
+        <div class="features">
+            <div class="feature-item">
+                <img src="Image/11.png" style="width: 100px; height: 100px; border-radius: 80px;" alt="Quick Delivery">
+                <h3>Quick Delivery</h3>
+                <p>Starting from ₦5,000</p>
+            </div>
+            <div class="feature-item">
+                <img src="Image/1.png" style="width: 100px; height: 100px; border-radius: 80px;" alt="Positive Feedback">
+                <h3>Positive Feedback</h3>
+                <p>99% Customer Satisfaction</p>
+            </div>
+            <div class="feature-item">
+                <img src="Image/pre.png" style="border-radius: 120px; height: 120px;" alt="Warranty">
+                <h3>Warranty</h3>
+                <p>365-Day Coverage</p>
+            </div>
+            <div class="feature-item">
+                <img src="Image/bankk.png" style="width: 100px; height: 100px; border-radius: 80px;" alt="Secure Payment">
+                <h3>Secure Payment</h3>
+                <p>Safe and Reliable Payment System</p>
+            </div>
+            <div class="feature-item">
+                <img src="Image/brand.png" style="width: 100px; height: 100px; border-radius: 80px;" alt="Best Brands">
+                <h3>Best Brands</h3>
+                <p>Featuring Top-Quality Brands Only</p>
+            </div>
+        </div>
+    </div>
+    <div class="category-container">
+        <h2 class="category-title" style="text-align: left;">Top Categories</h2>
+        <div class="category-grid">
+            <div class="category-item">
+                <img src="Image/xiaomi.jpg" alt="Smartphones">
+                <p class="category-name"><a href="#">Smartphones</a></p>
+            </div>
+            <div class="category-item">
+                <img src="Image/print.jpg" alt="Printers and Scanners">
+                <p class="category-name"><a href="#">Printers and Scanners</a></p>
+            </div>
+            <div class="category-item">
+                <img src="Image/flash.png" alt="Phone Accessories">
+                <p class="category-name"><a href="#">Phone Accessories</a></p>
+            </div>
+            <div class="category-item">
+                <img src="Image/vic.jpg" alt="Laptops">
+                <p class="category-name"><a href="#">Laptops</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+            document.querySelectorAll('.category-item').forEach(item => {
+          item.addEventListener('click', function() {
+              alert(`You clicked on ${this.querySelector('.category-name').innerText}`);
+          });
+      });
+    </script>
+
+<div class="scroll-container">
+  <h2 class="scroll-title">Laptop & Desktops</h2>
+
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      
+      <div class="swiper-slide">
+        <img src="Image/omen.jpg" alt="HP Omen 16">
+        <p style="font-size: 12px; color: gray;">HP Omen 16 | 13th Gen i7 | 16GB RAM | 1TB SSD | 16.1" | RTX 4050 (6GB) | Win 11</p>
+        <p><del>₦2,580,000</del> <span style="color: orange;">₦2,500,000</span></p>
+        <button class="add-to-cart" data-name="HP Omen 16" data-price="2500000">Add to Cart</button>
+      </div>
+
+      <div class="swiper-slide">
+        <img src="Image/vic.jpg" alt="HP Victus 15">
+        <p style="font-size: 12px; color: gray;">HP Victus 15 | i5 12th Gen | 16GB RAM | 512GB SSD | RTX 3050 (4GB) | Win 11</p>
+        <p><del>₦1,520,000</del> <span style="color: orange;">₦1,370,000</span></p>
+        <button class="add-to-cart" data-name="HP Victus 15" data-price="1370000">Add to Cart</button>
+      </div>
+
+      <div class="swiper-slide">
+        <img src="Image/asus.jpg" alt="Asus TUF Dash 15">
+        <p style="font-size: 12px; color: gray;">Asus TUF Dash 15 | i7-11370H | 16GB RAM | 512GB SSD | RTX 3050 | Backlit | Win 11</p>
+        <p><del>₦1,970,000</del> <span style="color: orange;">₦1,750,000</span></p>
+        <button class="add-to-cart" data-name="Asus TUF Dash 15" data-price="1750000">Add to Cart</button>
+      </div>
+
+      <div class="swiper-slide">
+        <img src="Image/alien.jpg" alt="Alienware M17 R5">
+        <p style="font-size: 12px; color: gray;">Alienware M17 R5 | Ryzen 9 | 16GB RAM | 1TB SSD | 17.3" | RTX 3080 Ti (16GB) | Win 11</p>
+        <p><del>₦3,800,000</del> <span style="color: orange;">₦3,600,000</span></p>
+        <button class="add-to-cart" data-name="Alienware M17 R5" data-price="3600000">Add to Cart</button>
+      </div>
+
+      <div class="swiper-slide">
+        <img src="Image/dell.jpg" alt="Dell Inspiron Gaming 15">
+        <p style="font-size: 12px; color: gray;">Dell Inspiron | 12th Gen i7 | 16GB RAM | 1TB SSD | RTX 3060 (6GB) | 15.6" | Win 11</p>
+        <p><del>₦2,690,000</del> <span style="color: orange;">₦2,400,950</span></p>
+        <button class="add-to-cart" data-name="Dell Inspiron Gaming 15" data-price="2400950">Add to Cart</button>
+      </div>
+
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</div>
+
+<script>
+  const swiper = new Swiper('.mySwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+      delay: 3000,      
+      disableOnInteraction: false, 
+    },
+    navigation: {
+      nextEl: '.swiper-button-next', 
+      prevEl: '.swiper-button-prev',  
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,  
+      },
+      768: {
+        slidesPerView: 3,  
+      },
+      1024: {
+        slidesPerView: 4,  
+      },
+    },
+    touchEventsTarget: 'wrapper',  
+    simulateTouch: true,          
+    touchRatio: 1,              
+  });
+</script>
+
+
+<div class="static-container">
+  <h2 class="static-title">Desktop Monitors</h2>
+  
+  <div class="static-grid" id="staticGrid">
+    <div class="static-item">
+      <img src="Image/dell cur.jpg" alt="Monitor 1">
+      <p style="font-size: 12px; color: gray;">
+        Dell S2721HGFA 27" FHD Curved 144Hz Gaming Monitor
+      </p>
+      <p>
+        <del>₦400,000</del>
+        <span style="color: orange; font-weight: bold;">₦385,000</span>
+      </p>
+      <button class="add-to-cart" data-name="Dell 27 Monitor" data-price="385000">Add to Cart</button>
+    </div>
+
+    <div class="static-item">
+      <img src="Image/Samsung OLED.jpg" alt="Monitor 2">
+      <p style="font-size: 12px; color: gray;">
+        Samsung Odyssey 49" Curved Ultrawide – Dual 1440p, HDR, 240Hz
+      </p>
+      <p>
+        <del>₦3,500,000</del>
+        <span style="color: orange; font-weight: bold;">₦3,335,000</span>
+      </p>
+      <button class="add-to-cart" data-name="Samsung 49 Curved" data-price="3335000">Add to Cart</button>
+    </div>
+
+    <div class="static-item">
+      <img src="Image/tuf game.jpg" alt="Monitor 3">
+      <p style="font-size: 12px; color: gray;">
+        Asus TUF VG289Q1A 28" 4K IPS Gaming Monitor – HDR10 Support
+      </p>
+      <p>
+        <del>₦532,500</del>
+        <span style="color: orange; font-weight: bold;">₦480,000</span>
+      </p>
+      <button class="add-to-cart" data-name="Asus TUF 28" data-price="480000">Add to Cart</button>
+    </div>
+
+    <div class="static-item">
+      <img src="Image/asus game.jpg" alt="Monitor 4">
+      <p style="font-size: 12px; color: gray;">
+        Asus TUF VG34VQEL1A 34" Curved 100Hz Gaming Monitor
+      </p>
+      <p>
+        <del>₦745,000</del>
+        <span style="color: orange; font-weight: bold;">₦730,000</span>
+      </p>
+      <button class="add-to-cart" data-name="Asus TUF 34" data-price="730000">Add to Cart</button>
+    </div>
+
+    <div class="static-item">
+      <img src="Image/xiaomi mon.jpg" alt="Monitor 5">
+      <p style="font-size: 12px; color: gray;">
+        Xiaomi G34WQi 34" Curved Gaming Monitor – 180Hz, UWQHD
+      </p>
+      <p>
+        <del>₦705,000</del>
+        <span style="color: orange; font-weight: bold;">₦650,000</span>
+      </p>
+      <button class="add-to-cart" data-name="Xiaomi 34 Curved" data-price="650000">Add to Cart</button>
+    </div>
+
+    <div class="static-item">
+      <img src="Image/aoc.jpg" alt="Monitor 6">
+      <p style="font-size: 12px; color: gray;">
+        AOC 34" WQHD 180Hz 1ms Curved Gaming Monitor with Adaptive-Sync
+      </p>
+      <p>
+        <del>₦894,600</del>
+        <span style="color: orange; font-weight: bold;">₦860,000</span>
+      </p>
+      <button class="add-to-cart" data-name="Aoc 34 1ms Curved" data-price="860000">Add to Cart</button>
+    </div>
+
+    <div class="static-item">
+      <img src="Image/lenovo mon.jpg" alt="Monitor 7">
+      <p style="font-size: 12px; color: gray;">
+        Lenovo G34w-30 34" Ultrawide QHD 165Hz Curved Monitor
+      </p>
+      <p>
+        <del>₦955,000</del>
+        <span style="color: orange; font-weight: bold;">₦950,000</span>
+      </p>
+      <button class="add-to-cart" data-name="Lenovo 34 Ultrawide" data-price="950000">Add to Cart</button>
+    </div>
+
+    <div class="static-item">
+      <img src="Image/envia mon.jpg" alt="Monitor 8">
+      <p style="font-size: 12px; color: gray;">
+        Philips Evnia 34M2C8600 34" QD-OLED Curved Gaming Monitor
+      </p>
+      <p>
+        <del>₦3,655,000</del>
+        <span style="color: orange; font-weight: bold;">₦3,600,000</span>
+      </p>
+      <button class="add-to-cart" data-name="Philips Evnia 34" data-price="3600000">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="dot-pagination" id="dotPagination">
+  </div>
+</div>
+
+<div class="cart" id="cartSidebar">
+  <div class="cart-header">
+    <span>Shopping Cart</span>
+    <span class="close-cart" onclick="toggleCart()">✖</span>
+  </div>
+  <div class="cart-items"></div>
+  <div class="cart-total">Total: ₦0</div>
+  <button class="checkout">Checkout</button>
+</div>
+
+<script>
+  const scrollGrid = document.getElementById('scrollGrid');
+  const pagination = document.getElementById('pagination');
+  const scrollItems = document.querySelectorAll('.scroll-item').length;
+  const itemWidth = document.querySelector('.scroll-item').offsetWidth + 20;
+  let scrollIndex = 0;
+  for (let i = 0; i < scrollItems; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('pagination-dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => setScrollIndex(i));
+    pagination.appendChild(dot);
+  }
+  const dots = document.querySelectorAll('.pagination-dot');
+  function updateScrollDots() {
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === scrollIndex);
+    });
+  }
+  function setScrollIndex(index) {
+    scrollIndex = index;
+    scrollGrid.style.transform = `translateX(-${scrollIndex * itemWidth}px)`;
+    updateScrollDots();
+  }
+  function scrollToNext() {
+    scrollIndex = (scrollIndex + 1) % scrollItems;
+    setScrollIndex(scrollIndex);
+  }
+  setInterval(scrollToNext, 10000);
+
+  let cart = [];
+  const cartContainer = document.getElementById("cartSidebar");
+
+  function toggleCart() {
+    cartContainer.classList.toggle("open");
+  }
+
+  document.querySelectorAll(".add-to-cart").forEach(button => {
+    button.addEventListener("click", function() {
+      const name = this.getAttribute("data-name");
+      const price = parseInt(this.getAttribute("data-price"));
+      const existingItem = cart.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      updateCart();
+      toggleCart();
+    });
+  });
+
+  function updateCart() {
+    const cartItems = document.querySelector(".cart-items");
+    cartItems.innerHTML = "";
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price * item.quantity;
+      cartItems.innerHTML += `
+        <div class="cart-item">
+          <span>${item.name} x${item.quantity}</span>
+          <span>₦${item.price * item.quantity}</span>
+        </div>
+      `;
+    });
+    document.querySelector(".cart-total").innerText = `Total: ₦${total}`;
+  }
+
+  const staticGrid = document.getElementById("staticGrid");
+  const staticItems = document.querySelectorAll(".static-item");
+  const dotPagination = document.getElementById("dotPagination");
+  const itemsPerPage = 4;
+  const totalItems = staticItems.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  let currentPage = 0;
+  for (let i = 0; i < totalPages; i++) {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => goToPage(i));
+    dotPagination.appendChild(dot);
+  }
+  function goToPage(pageIndex) {
+    currentPage = pageIndex;
+    updateStaticDots();
+    const offsetPercentage = pageIndex * 100;
+    staticGrid.style.transform = `translateX(-${offsetPercentage}%)`;
+  }
+  function updateStaticDots() {
+    const allDots = document.querySelectorAll(".dot");
+    allDots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentPage);
+    });
+  }
+  goToPage(0);
+</script>
+
+<div class="new-carousel-wrapper">
+  <h2 class="new-carousel-title">Smartphones</h2>
+  <div class="new-carousel-track" id="newCarouselTrack">
+    <div class="new-carousel-item">
+      <img src="Image/fold sam.png" alt="Z Fold6 512GB">
+      <p class="product-desc">Samsung Galaxy Z Fold6 12GB RAM 512GB ROM – Navy</p>
+      <p class="product-price">
+        <del>₦3,685,500</del> <span>₦3,600,000</span>
+      </p>
+      <button class="add-to-cart" data-name="Z Fold6 512GB" data-price="3600000">Add to Cart</button>
+    </div>
+    <div class="new-carousel-item">
+      <img src="Image/pixel 9.jpg" alt="Pixel 9 Pro">
+      <p class="product-desc">Google Pixel 9 Pro XL 5G – 16GB RAM, 128GB ROM, 6.8"</p>
+      <p class="product-price">
+        <del>₦1,580,000</del> <span>₦1,500,000</span>
+      </p>
+      <button class="add-to-cart" data-name="Pixel 9 Pro" data-price="1500000">Add to Cart</button>
+    </div>
+    <div class="new-carousel-item">
+      <img src="Image/iphone 14PM.jpg" alt="iPhone 14 Pro Max">
+      <p class="product-desc">iPhone 14 Pro Max 6.7" (256GB/6GB) Nano SIM – Purple</p>
+      <p class="product-price">
+        <del>₦1,486,000</del> <span>₦1,460,000</span>
+      </p>
+      <button class="add-to-cart" data-name="iPhone 14 Pro Max" data-price="1460000">Add to Cart</button>
+    </div>
+    <div class="new-carousel-item">
+      <img src="Image/iphone 15plus.jpg" alt="iPhone 15 Plus">
+      <p class="product-desc">iPhone 15 Plus 6.7" (512GB) Super Retina XDR – Black</p>
+      <p class="product-price">
+        <del>₦2,059,000</del> <span>₦2,000,000</span>
+      </p>
+      <button class="add-to-cart" data-name="iPhone 15 Plus" data-price="2000000">Add to Cart</button>
+    </div>
+    <div class="new-carousel-item">
+      <img src="Image/infinix.jpg" alt="Infinix Hot 50 Pro Plus">
+      <p class="product-desc">Infinix Hot 50 Pro Plus (256GB ROM + 8GB RAM) BLACK</p>
+      <p class="product-price">
+        <del>₦344,000</del> <span>₦340,000</span>
+      </p>
+      <button class="add-to-cart" data-name="Infinix Hot 50 Pro Plus" data-price="340000">Add to Cart</button>
+    </div>
+  </div>
+  <div class="new-indicator-wrapper" id="newIndicatorWrapper"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('newCarouselTrack');
+    const indicatorWrapper = document.getElementById('newIndicatorWrapper');
+    let items = Array.from(track.children);
+    const itemWidth = items[0].offsetWidth + 20; 
+    const visibleItems = Math.floor(track.offsetWidth / itemWidth);
+    const originalItemsCount = items.length;
+  
+    items.slice(0, visibleItems).forEach(item => {
+      const clone = item.cloneNode(true);
+      clone.classList.add('cloned');
+      track.appendChild(clone);
+    });
+  
+    items = Array.from(track.children);
+    const totalItems = items.length;
+    const totalPages = Math.ceil(originalItemsCount / visibleItems);
+    let currentPage = 0;
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let autoplayInterval;
+  
+    const updateIndicators = () => {
+      indicatorWrapper.innerHTML = '';
+      for (let i = 0; i < totalPages; i++) {
+        const dot = document.createElement('span');
+        dot.style.width = '10px';
+        dot.style.height = '10px';
+        dot.style.borderRadius = '50%';
+        dot.style.backgroundColor = i === currentPage ? 'orange' : '#ccc';
+        dot.style.cursor = 'pointer';
+        dot.addEventListener('click', () => {
+          currentPage = i;
+          scrollToCurrentPage();
+        });
+        indicatorWrapper.appendChild(dot);
+      }
+    };
+  
+    const scrollToCurrentPage = () => {
+      const newScrollLeft = currentPage * visibleItems * itemWidth;
+      track.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+      updateIndicators();
+    };
+  
+      const nextItem = () => {
+    if (track.scrollLeft + track.offsetWidth >= track.scrollWidth - itemWidth) {
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: itemWidth, behavior: 'smooth' });
+    }
+  };
+
+  
+  const startAutoplay = () => {
+  autoplayInterval = setInterval(nextItem, 12000);
+};
+
+  
+    const stopAutoplay = () => {
+      clearInterval(autoplayInterval);
+    };
+  
+    const handleDragStart = (x) => {
+      isDragging = true;
+      startX = x - track.offsetLeft;
+      scrollStart = track.scrollLeft;
+      stopAutoplay();
+    };
+  
+    const handleDragMove = (x) => {
+      if (!isDragging) return;
+      const walk = (x - track.offsetLeft - startX) * 1.2;
+      track.scrollLeft = scrollStart - walk;
+    };
+  
+    const handleDragEnd = () => {
+      isDragging = false;
+      startAutoplay();
+    };
+  
+    track.addEventListener('mousedown', e => handleDragStart(e.pageX));
+    track.addEventListener('mousemove', e => handleDragMove(e.pageX));
+    track.addEventListener('mouseup', handleDragEnd);
+    track.addEventListener('mouseleave', () => isDragging && handleDragEnd());
+
+    track.addEventListener('touchstart', e => handleDragStart(e.touches[0].pageX));
+    track.addEventListener('touchmove', e => handleDragMove(e.touches[0].pageX));
+    track.addEventListener('touchend', handleDragEnd);
+  
+    updateIndicators();
+    scrollToCurrentPage();
+    startAutoplay();
+  });
+  </script>    
+
+<div class="blog-posts">
+    <div class="blog-post">
+      <a href="#"><img src="Image/buy.jpg" alt="Blog Post 1"></a>
+      <div class="blog-post-title">
+        <a href="#">The Ultimate Smartphone Buying Guide: Find Your Perfect Match</a>
+      </div>
+      <div class="blog-post-description">
+        Everything you need to know before upgrading your tech companion. <a href="#" class="learn-more">Learn More</a>
+      </div>
+    </div>
+    <div class="blog-post">
+      <a href="#"><img src="Image/best.jpg" alt="Blog Post 2"></a>
+      <div class="blog-post-title">
+        <a href="#">Top 10 Gadgets You Didn’t Know You Needed in 2025</a>
+      </div>
+      <div class="blog-post-description">
+        From cool to essential, these gadgets redefine convenience. <a href="#" class="learn-more">Learn More</a>
+      </div>
+    </div>
+    <div class="blog-post">
+      <a href="#"><img src="Image/pc.jpg" alt="Blog Post 3"></a>
+      <div class="blog-post-title">
+        <a href="#">The Evolution of PCs: What's New and What's Next</a>
+      </div>
+      <div class="blog-post-description">
+        A deep dive into cutting-edge PC innovations shaping the future. <a href="#" class="learn-more">Learn More</a>
+      </div>
+    </div>
+
+    <div class="blog-post">
+        <a href="#"><img src="Image/bank.png" alt="Blog Post 3"></a>
+        <div class="blog-post-title">
+          <a href="#">Portable Power: The Best Power Banks for Every Device</a>
+        </div>
+        <div class="blog-post-description">
+          Stay charged wherever life takes you with these top-rated power banks. <a href="#" class="learn-more">Learn More</a>
+        </div>
+      </div>
+
+      <div class="blog-post">
+        <a href="#"><img src="Image/laptopss.jpg" alt="Blog Post 1"></a>
+        <div class="blog-post-title">
+          <a href="#">How to Choose the Perfect Laptop: A Comprehensive Guide</a>
+        </div>
+        <div class="blog-post-description">
+          Key considerations to match your laptop to your unique needs. <a href="#" class="learn-more">Learn More</a>
+        </div>
+      </div>
+      <div class="blog-post">
+        <a href="#"><img src="Image/trends.jpg" alt="Blog Post 2"></a>
+        <div class="blog-post-title">
+          <a href="#">Tech Trends 2025: What’s Hot in Phones, PCs, and More</a>
+        </div>
+        <div class="blog-post-description">
+          A glimpse into the gadgets leading the charge this year. <a href="#" class="learn-more">Learn More</a>
+        </div>
+      </div>
+</div>
+
+<div class="contaainer">
+    <h1>Welcome to V5 Digital Express Store - Your No.1 Tech Destination</h1>
+    <p>Shop the Latest Tech Gadgets and Accessories</p>
+    
+    <div class="section">
+        <h1>Discover Top-Quality Smartphones and Accessories</h1>
+        <p>Explore our wide selection of premium smartphones from trusted brands like <a href="#" style="text-decoration: none; color: orange;">Apple</a>, <a href="#" style="text-decoration: none; color: orange;">Samsung</a>, <a href="#" style="text-decoration: none; color: orange;">Xiaomi</a>, <a href="#" style="text-decoration: none; color: orange;">Infinix</a>, and <a href="#" style="text-decoration: none; color: orange;">Tecno</a>. Complement your mobile experience with<br> high-quality accessories such as <a href="#" style="text-decoration: none; color: orange;">phone cases</a>, <a href="#" style="text-decoration: none; color: orange;">screen protectors</a>, <a href="#" style="text-decoration: none; color: orange;">power banks</a>, <a href="#" style="text-decoration: none; color: orange;">Bluetooth speakers</a>, <a href="#" style="text-decoration: none; color: orange;">Airpods</a>, and more from top brands like<br> <a href="#" style="text-decoration: none; color: orange;">Oraimo</a>, <a href="#" style="text-decoration: none; color: orange;">JBL</a>, and Edifier. Stay ahead in the tech world with our latest models and cutting-edge designs.</p>
+    </div>
+    
+    <div class="section">
+        <h1>High-Performance Laptops and Tablets</h1>
+        <p>Upgrade your productivity with our collection of <a href="#" style="text-decoration: none; color: orange;">laptops</a> and <a href="#" style="text-decoration: none; color: orange;">tablets</a> from top brands like 
+            <a href="#" style="text-decoration: none; color: orange;">HP</a>, 
+                <a href="#" style="text-decoration: none; color: orange;">Dell</a>, 
+                <a href="#" style="text-decoration: none; color: orange;">Lenovo</a>, 
+                <a href="#" style="text-decoration: none; color: orange;">Microsoft</a>, and 
+                <a href="#" style="text-decoration: none; color: orange;"> MacBook</a>. Find the perfect device<br> for work, school, or gaming, and enhance your setup with <a href="#" style="text-decoration: none; color: orange;">Keyboards</a>, <a href="#" style="text-decoration: none; color: orange;">mice</a>, printers, and storage devices. Our devices deliver speed, performance,<br> and reliability to match your needs.</p>
+    </div>
+    
+    <div class="section">
+        <h1>Tech Accessories for Every Need</h1>
+        <p>Stay connected with 
+            <a href="#" style="text-decoration: none; color: orange;">Chargers</a>, 
+                <a href="#" style="text-decoration: none; color: orange;">adapters</a>, 
+                <a href="#" style="text-decoration: none; color: orange;">headphones</a>, 
+                <a href="#" style="text-decoration: none; color: orange;"> smartwatches</a>, and portable <a href="#" style="text-decoration: none; color: orange;">speakers</a>. Our tech accessories are reliable and designed to elevate your tech<br> experience. Whether for personal use or professional needs, we have the gadgets that keep you powered and connected.</p>
+    </div>
+    
+    <div class="section">
+        <h1>Unbeatable Deals and Discounts</h1>
+        <p>Enjoy incredible deals on smartphones, laptops, and accessories. Subscribe to our <a href="#" style="text-decoration: none; color: orange;">newsletter</a> and follow us on social media to stay updated on exclusive offers.<br> Take advantage of seasonal sales, flash deals, and promotional discounts tailored just for you.</p>
+    </div>
+    
+    <div class="section">
+        <h1>Fast and Secure Delivery</h1>
+        <p>Experience quick and secure delivery with products dispatched within 24 hours. We offer nationwide shipping across Nigeria. Your orders are carefully packaged<br> and delivered to your doorstep with the utmost care.</p>
+    </div>
+    
+    <div class="section">
+        <h1>Flexible Payment Options</h1>
+        <p>Choose from secure payment options including debit/credit cards, bank transfers, and pay on delivery for select items.<br> We prioritize your security and convenience in every transaction.</p>
+    </div>
+    
+    <div class="section">
+        <h1>Reliable Customer Support</h1>
+        <p>Our customer service team is ready to assist you with any inquiries or order placements. <a href="#" style="text-decoration: none; color: orange;">Contact us</a> today for a seamless shopping experience.<br> We are committed to providing timely and effective solutions to meet your needs.</p>
+    </div>
+</div>
+
+    <div class="popup-overlay" id="popupOverlay" onclick="closePopup()"></div>
+
+
+    <div class="whatsapp-float" onclick="togglePopup()">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp Icon">
+    </div>
+
+
+    <div class="whatsapp-popup" id="whatsappPopup">
+        <div class="whatsapp-popup-header">
+            <h2 style="font-size: 24px; line-height: 1.4; font-family: Arial, sans-serif;">Welcome to V5 DIGITAL<br> EXPRESS STORE!</h2>
+            <p style="font-size: 14px; font-weight: normal; line-height: 1.4; font-family: Arial, sans-serif;">Need assistance? Connect with our Online Agent on WhatsApp by clicking below.</p>
+            <button class="whatsapp-popup-close" onclick="closePopup()">×</button>
+        </div>
+        <div class="whatsapp-popup-body">
+            <img src="Image/me.jpg" alt="Agent">
+            <h3>Online Sales/Support Agent</h3>
+            <p>VExpress</p>
+            <a href="https://wa.me/yourphonenumber" target="_blank" style="text-decoration: none; color: orange; font-weight: bold;">
+                Chat on WhatsApp
+            </a>
+        </div>
+        <div class="whatsapp-popup-footer">
+            <strong style="color: black; font-size: 14px;">Powered by</strong>: <a href="#" style="color: #ff9800; text-decoration: none;">VExpress</a>
+        </div>
+    </div>
+
+    <script>
+        function togglePopup() {
+            document.getElementById('popupOverlay').style.display = 'block';
+            document.getElementById('whatsappPopup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            document.getElementById('whatsappPopup').style.display = 'none';
+        }
+    </script>
+
+    <div class="top-footer" style="padding-bottom: 50px;">
+        <div class="photo">
+            <img src="Image/logoo.png" alt="photo" style="width: 200px;">
+        </div>
+    
+        <div class="v5">
+            <h3 style="font-weight: bold; font-size: 18px;">New to VExpress?</h3>
+            <p>Subscribe to our newsletter and stay updated on the latest deals and offers</p>
+        </div>
+    
+        <form style="margin-left: 370px;">
+            <div class="input-container" style="width: 81%;">
+              <input type="email" placeholder="Enter your email" required>
+              <button type="submit">Subscribe</button>
+            </div>
+            <label style="display: block; margin-top: 10px;">
+                <input type="checkbox" required style="margin-right: 10px;">
+                <span style="color: white;">
+                  I agree to VExpress's <a href="#" style="color: orange;">Privacy and Cookie Policy</a> & <a href="#" style="color: orange;">I accept the Legal Terms</a>
+                </span>
+    
+            </label> 
+        </form>
+    
+            <div class="stockk">
+                <img src="Image/stock.png" alt="photo" style="width: 60px; border-radius: 7px;">
+            </div>
+            <div class="app">
+                <span style="font-weight: bold;">App Coming Soon...</span>
+                <p style="font-weight: normal;">Stay tuned for exclusive offers and updates!</p>
+            </div>
+    </div>
+    
+    <footer class="bottom-footer">
+        <div class="bottom-footer-container">
+          
+            <div class="bottom-footer-column">
+                <h4>NEED HELP?</h4>
+                <a href="#">Chat with us</a>
+                <a href="#">Help Center</a>
+                <a href="#">Contact Us</a>
+            </div>
+      
+            <div class="bottom-footer-column">
+                <h4>USEFUL LINKS</h4>
+                <a href="#">Service Center</a>
+                <a href="#">How to shop on V5?</a>
+                <a href="#">Delivery options and timelines</a>
+                <a href="#">How to return a product</a>
+                <a href="#">Corporate and bulk purchases</a>
+                <a href="#">Report a Product</a>
+                <a href="#">Dispute Resolution Policy</a>
+                <a href="#">Returns & Refund Timeline</a>
+                <a href="#">Return Policy</a>
+                <a href="#">Black Friday</a>
+            </div>
+      
+            <div class="bottom-footer-column">
+                <h4>ABOUT V5</h4>
+                <a href="#">About us</a>
+                <a href="#">Careers</a>
+                <a href="#">Express Delivery</a>
+                <a href="#">Terms and Conditions</a>
+                <a href="#">Privacy Notice</a>
+                <a href="#">Payment Guidelines</a>
+                <a href="#">Cookie Notice</a>
+                <a href="#">Official Stores</a>
+                <a href="#">Flash Sales</a>
+            </div>
+      
+            <div class="bottom-footer-column">
+                <h4>MAKE MONEY WITH V5</h4>
+                <a href="#">Sell on V5</a>
+                <a href="#">Vendor Hub</a>
+                <a href="#">Become a Sales Consultant</a>
+                <a href="#">Affiliate Program</a>
+            </div>
+      
+            <div class="bottom-footer-column">
+                <h4>V5 INTERNATIONAL</h4>
+                <a href="#">Algeria</a>
+                <a href="#">Egypt</a>
+                <a href="#">Ghana</a>
+                <a href="#">Kenya</a>
+                <a href="#">Morocco</a>
+                <a href="#">Nigeria</a>
+                <a href="#">Senegal</a>
+                <a href="#">Uganda</a>
+            </div>
+      
+        </div>
+    
+        <div class="bottom-footer-extra">
+            <div class="social-media">
+                <p style="font-weight: bold;">JOIN US ON</p>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+      
+            <div class="payment-methods">
+                <p style="font-weight: bold;">PAYMENT METHODS & DELIVERY PARTNERS</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                <img src="Image/inter.jpg" alt="Interswitch">
+                <img src="Image/dhl.jpg" alt="DHL">
+                <img src="Image/verve.jpg" alt="Verve">
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Horizontal Scroll Hidden & Dot Pagination</title>
+  <style>
+    /* Container for the product section */
+    .static-container {
+      max-width: 100%;
+      position: relative;
+      margin-left: 60px;
+      padding-top: 30px;
+    }
+    .static-title {
+      text-align: left;
+    }
+
+    /* The grid that displays items horizontally */
+    .static-grid {
+      display: flex;
+      gap: 20px;
+      transition: transform 0.5s ease-in-out;
+      will-change: transform;
+      
+      /* Let users scroll horizontally with mouse/touch gestures */
+      overflow-x: auto;  
+      scroll-behavior: smooth; 
+
+      /* Hide scrollbar in modern browsers */
+      scrollbar-width: none;          /* Firefox */
+      -ms-overflow-style: none;       /* IE/Edge */
+    }
+    /* Hide scrollbar in WebKit-based browsers (Chrome, Safari, etc.) */
+    .static-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .static-item {
+      flex: 0 0 25%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      background-color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+    .static-item img {
+      width: 100%;
+      height: auto;
+    }
+    .static-item p {
+      margin: 15px 0;
+      font-weight: bold;
+      color: #555;
+    }
+
+    /* Add to Cart button */
+    .add-to-cart {
+      background-color: orange;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      width: 100%;
+    }
+    .add-to-cart:hover {
+      background-color: darkorange;
+    }
+
+    /* Dot Pagination */
+    .dot-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      gap: 8px;
+    }
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #ccc;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .dot.active {
+      background-color: blue; /* or any color you prefer */
+    }
+
+    /* Cart Sidebar */
+    .cart {
+      position: fixed;
+      right: -400px;
+      top: 0;
+      width: 300px;
+      height: 100%;
+      background-color: #fff;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      transition: right 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 9999; /* Ensure the cart stays on top */
+    }
+    .cart.open {
+      right: 0;
+    }
+    .cart-header {
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+    }
+    .close-cart {
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .cart-items {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+    .cart-total {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .checkout {
+      background-color: orange;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .checkout:hover {
+      background-color: darkorange;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- STATIC SECTION WITH DOT PAGINATION & HIDDEN SCROLLBAR -->
+  <div class="static-container">
+    <h2 class="static-title">Desktop Monitors</h2>
+    
+    <!-- The grid that shows items horizontally -->
+    <div class="static-grid" id="staticGrid">
+      <!-- PAGE 1: 4 items (example) -->
+      <div class="static-item">
+        <img src="Image/monitor1.jpg" alt="Monitor 1">
+        <p style="font-size: 12px; color: gray;">
+          Dell 24" LED Monitor | 1080p | 75Hz | FreeSync
+        </p>
+        <p>
+          <del>₦95,000</del>
+          <span style="color: orange; font-weight: bold;">₦85,000</span>
+        </p>
+        <button class="add-to-cart" data-name="Dell 24 Monitor" data-price="85000">Add to Cart</button>
+      </div>
+
+      <div class="static-item">
+        <img src="Image/monitor2.jpg" alt="Monitor 2">
+        <p style="font-size: 12px; color: gray;">
+          Samsung 27" Curved Monitor | 1080p | 144Hz | FreeSync
+        </p>
+        <p>
+          <del>₦150,000</del>
+          <span style="color: orange; font-weight: bold;">₦135,000</span>
+        </p>
+        <button class="add-to-cart" data-name="Samsung 27 Curved" data-price="135000">Add to Cart</button>
+      </div>
+
+      <div class="static-item">
+        <img src="Image/monitor3.jpg" alt="Monitor 3">
+        <p style="font-size: 12px; color: gray;">
+          LG UltraWide 29" | 2560 x 1080 | 75Hz
+        </p>
+        <p>
+          <del>₦180,000</del>
+          <span style="color: orange; font-weight: bold;">₦165,000</span>
+        </p>
+        <button class="add-to-cart" data-name="LG UltraWide 29" data-price="165000">Add to Cart</button>
+      </div>
+
+      <div class="static-item">
+        <img src="Image/monitor4.jpg" alt="Monitor 4">
+        <p style="font-size: 12px; color: gray;">
+          Acer Nitro 25" | 1080p | 240Hz | G-Sync Compatible
+        </p>
+        <p>
+          <del>₦220,000</del>
+          <span style="color: orange; font-weight: bold;">₦200,000</span>
+        </p>
+        <button class="add-to-cart" data-name="Acer Nitro 25" data-price="200000">Add to Cart</button>
+      </div>
+
+      <!-- PAGE 2: 4 items (example) -->
+      <div class="static-item">
+        <img src="Image/monitor5.jpg" alt="Monitor 5">
+        <p style="font-size: 12px; color: gray;">
+          ASUS TUF Gaming 27" | 1440p | 165Hz | G-Sync Compatible
+        </p>
+        <p>
+          <del>₦270,000</del>
+          <span style="color: orange; font-weight: bold;">₦250,000</span>
+        </p>
+        <button class="add-to-cart" data-name="ASUS TUF Gaming 27" data-price="250000">Add to Cart</button>
+      </div>
+
+      <div class="static-item">
+        <img src="Image/monitor6.jpg" alt="Monitor 6">
+        <p style="font-size: 12px; color: gray;">
+          ViewSonic 32" 4K | 3840 x 2160 | 60Hz | HDR10
+        </p>
+        <p>
+          <del>₦350,000</del>
+          <span style="color: orange; font-weight: bold;">₦320,000</span>
+        </p>
+        <button class="add-to-cart" data-name="ViewSonic 32 4K" data-price="320000">Add to Cart</button>
+      </div>
+
+      <div class="static-item">
+        <img src="Image/monitor7.jpg" alt="Monitor 7">
+        <p style="font-size: 12px; color: gray;">
+          HP Omen 27" QHD | 165Hz | 1ms | G-Sync
+        </p>
+        <p>
+          <del>₦290,000</del>
+          <span style="color: orange; font-weight: bold;">₦270,000</span>
+        </p>
+        <button class="add-to-cart" data-name="HP Omen 27" data-price="270000">Add to Cart</button>
+      </div>
+
+      <div class="static-item">
+        <img src="Image/monitor8.jpg" alt="Monitor 8">
+        <p style="font-size: 12px; color: gray;">
+          BenQ ZOWIE 24" | 1080p | 144Hz | DyAc
+        </p>
+        <p>
+          <del>₦120,000</del>
+          <span style="color: orange; font-weight: bold;">₦110,000</span>
+        </p>
+        <button class="add-to-cart" data-name="BenQ ZOWIE 24" data-price="110000">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Dot Pagination -->
+    <div class="dot-pagination" id="dotPagination">
+      <!-- We'll generate dots via JavaScript -->
+    </div>
+  </div>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart" id="cartSidebar">
+    <div class="cart-header">
+      <span>Shopping Cart</span>
+      <span class="close-cart" onclick="toggleCart()">✖</span>
+    </div>
+    <div class="cart-items"></div>
+    <div class="cart-total">Total: ₦0</div>
+    <button class="checkout">Checkout</button>
+  </div>
+
+  <script>
+    // =========== CART FUNCTIONALITY ===========
+    let cart = [];
+    const cartContainer = document.getElementById("cartSidebar");
+
+    function toggleCart() {
+      cartContainer.classList.toggle("open");
+    }
+
+    // When a user clicks "Add to Cart"
+    document.querySelectorAll(".add-to-cart").forEach(button => {
+      button.addEventListener("click", function() {
+        const name = this.getAttribute("data-name");
+        const price = parseInt(this.getAttribute("data-price"));
+
+        const existingItem = cart.find(item => item.name === name);
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({ name, price, quantity: 1 });
+        }
+
+        updateCart();
+        toggleCart();
+      });
+    });
+
+    function updateCart() {
+      const cartItems = document.querySelector(".cart-items");
+      cartItems.innerHTML = "";
+
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <span>${item.name} x${item.quantity}</span>
+            <span>₦${item.price * item.quantity}</span>
+          </div>
+        `;
+      });
+      document.querySelector(".cart-total").innerText = `Total: ₦${total}`;
+    }
+
+    // =========== DOT PAGINATION FOR THE STATIC SECTION ===========
+    const staticGrid = document.getElementById("staticGrid");
+    const staticItems = document.querySelectorAll(".static-item");
+    const dotPagination = document.getElementById("dotPagination");
+
+    // We'll group items into pages of 4. Adjust if needed.
+    const itemsPerPage = 4;
+    const totalItems = staticItems.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+    let currentPage = 0; // We'll use zero-based index for pages in the code
+
+    // Generate the dots
+    for (let i = 0; i < totalPages; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      if (i === 0) {
+        dot.classList.add("active");
+      }
+      dot.addEventListener("click", () => goToPage(i));
+      dotPagination.appendChild(dot);
+    }
+
+    // Show the page based on index
+    function goToPage(pageIndex) {
+      currentPage = pageIndex;
+      updateDots();
+      // Each "page" is 100% of the container width. 
+      // If pageIndex=1 => shift -100%, pageIndex=2 => shift -200%, etc.
+      const offsetPercentage = pageIndex * 100;
+      staticGrid.style.transform = `translateX(-${offsetPercentage}%)`;
+    }
+
+    // Update dot styles
+    function updateDots() {
+      const allDots = document.querySelectorAll(".dot");
+      allDots.forEach((dot, index) => {
+        if (index === currentPage) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+    }
+
+    // Initialize on the first page
+    goToPage(0);
+  </script>
+</body>
+</html>

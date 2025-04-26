@@ -1,0 +1,62 @@
+<div id="cart-items"></div>
+<div class="cart-total">Subtotal: ₦<span id="cart-total">0</span></div>
+<button class="clear-cart">Clear Cart</button>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    renderCart();
+
+    function renderCart() {
+        let cartContainer = document.getElementById("cart-items");
+        let total = 0;
+        cartContainer.innerHTML = "";
+
+        cart.forEach((item, index) => {
+            total += item.price * item.quantity;
+            cartContainer.innerHTML += `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div>${item.name} - ₦${item.price.toLocaleString()} x ${item.quantity}</div>
+                    <button class="decrement" data-index="${index}">-</button>
+                    <button class="increment" data-index="${index}">+</button>
+                    <button class="remove" data-index="${index}">Remove</button>
+                </div>
+            `;
+        });
+
+        document.getElementById("cart-total").textContent = total.toLocaleString();
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("increment")) {
+            let index = event.target.dataset.index;
+            cart[index].quantity += 1;
+            renderCart();
+        }
+
+        if (event.target.classList.contains("decrement")) {
+            let index = event.target.dataset.index;
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+            } else {
+                cart.splice(index, 1);
+            }
+            renderCart();
+        }
+
+        if (event.target.classList.contains("remove")) {
+            let index = event.target.dataset.index;
+            cart.splice(index, 1);
+            renderCart();
+        }
+    });
+
+    document.querySelector(".clear-cart").addEventListener("click", function () {
+        localStorage.removeItem("cart");
+        cart = [];
+        renderCart();
+    });
+});
+</script>
